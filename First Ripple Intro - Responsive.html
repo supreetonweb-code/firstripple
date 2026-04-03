@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project First Ripple — Programme Overview</title>
+<style>
+
+/* ── RESET ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── PAGE ── */
+body {
+  background: #E8E0D0;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+.infographic {
+  background: #F5F0E8;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #1A1A1A;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* ── TYPOGRAPHY HELPERS ── */
+.sans { font-family: 'Helvetica Neue', Arial, sans-serif; }
+.eyebrow { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; }
+.section-rule { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.section-rule-label { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #8B6914; white-space: nowrap; }
+.section-rule-line { flex: 1; height: 1px; background: #C4A35A; opacity: 0.45; }
+
+/* ── SECTION WRAPPERS ── */
+.manifesto-wrap { background: #EDE8DF; padding: 52px 52px 48px; border-bottom: 3px solid #C4A35A; }
+.header-wrap { background: #F5F2EC; padding: 36px 52px 32px; border-bottom: 3px solid #C4A35A; }
+.body-wrap { padding: 28px 40px 36px; }
+.section-block { margin-bottom: 28px; }
+
+/* ── GRIDS — DESKTOP ── */
+.grid-4   { display: grid; grid-template-columns: repeat(4, 1fr); }
+.grid-3   { display: grid; grid-template-columns: repeat(3, 1fr); }
+.grid-2   { display: grid; grid-template-columns: 1fr 1fr; }
+.grid-5   { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.grid-la  { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 1px; background: #C4A35A; }
+.grid-ojt { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.grid-how { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.grid-venture { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; align-items: center; }
+.grid-2col-section { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+.grid-faculty-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+/* ── KEY METRICS ── */
+.metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 3px solid #C4A35A; }
+.metric-cell { padding: 22px 20px; text-align: center; border-right: 1px solid #C4A35A; }
+.metric-cell:last-child { border-right: none; }
+
+/* ── HOW WE TEACH CONNECTOR LINE ── */
+.how-connector {
+  position: absolute;
+  top: 32px; left: 12.5%; width: 75%; height: 2px;
+  background: linear-gradient(to right, #8B6914, #C4A35A);
+  z-index: 0; opacity: 0.4;
+}
+
+/* ── OUTCOMES ROW ── */
+.outcomes-grid {
+  border-top: 2px solid #C4A35A;
+  padding-top: 22px;
+  margin-bottom: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.outcome-cell { text-align: center; padding: 0 16px; }
+.outcome-cell.bordered { border-left: 1px solid #C4A35A; border-right: 1px solid #C4A35A; }
+
+/* ── FOOTER ── */
+.footer-wrap {
+  background: #1A1A1A;
+  padding: 22px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ── HISTORICAL COMPARISONS ── */
+.comparisons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #3A3020; margin-bottom: 36px; }
+
+/* ─────────────────────────────────────────────── */
+/* MOBILE BREAKPOINT — 640px                       */
+/* ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+
+  body { padding: 0; }
+
+  .manifesto-wrap { padding: 32px 20px 36px; }
+  .header-wrap    { padding: 24px 20px; }
+  .body-wrap      { padding: 20px 16px 28px; }
+
+  /* All multi-column grids stack to single column */
+  .metrics-grid          { grid-template-columns: repeat(2, 1fr); }
+  .metric-cell           { border-right: none; border-bottom: 1px solid #C4A35A; }
+  .metric-cell:nth-child(odd)  { border-right: 1px solid #C4A35A; }
+  .metric-cell:last-child      { border-bottom: none; }
+  .metric-cell:nth-last-child(2) { border-bottom: none; }
+
+  .grid-4            { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .grid-3            { grid-template-columns: 1fr; gap: 8px; }
+  .grid-2            { grid-template-columns: 1fr; gap: 8px; }
+  .grid-5            { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .grid-la           { grid-template-columns: 1fr; gap: 1px; }
+  .grid-ojt          { grid-template-columns: repeat(3, 1fr); }
+  .grid-how          { grid-template-columns: 1fr 1fr; gap: 4px; }
+  .grid-venture      { grid-template-columns: 1fr; gap: 16px; }
+  .grid-2col-section { grid-template-columns: 1fr; gap: 16px; }
+  .grid-faculty-tiles{ grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  .comparisons-grid  { grid-template-columns: 1fr; }
+
+  .outcomes-grid     { grid-template-columns: 1fr; gap: 20px; }
+  .outcome-cell.bordered { border-left: none; border-right: none; border-top: 1px solid #C4A35A; border-bottom: 1px solid #C4A35A; padding: 20px 0; }
+  .outcome-cell      { padding: 0; }
+
+  /* Hide the decorative connector line in How We Teach on mobile */
+  .how-connector { display: none; }
+
+  .footer-wrap {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 20px;
+  }
+
+  /* Font size adjustments */
+  .manifesto-wrap h1,
+  .header-wrap h1 { font-size: 22px; }
+
+  .metric-num { font-size: 28px !important; }
+}
+
+</style>
+</head>
+<body>
+<div class="infographic">
+
+  <!-- ═══════════════════════════════ -->
+  <!-- SECTION 1: MANIFESTO           -->
+  <!-- ═══════════════════════════════ -->
+  <div class="manifesto-wrap">
+
+    <h1 style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;color:#1A1A1A;line-height:1.1;letter-spacing:-0.5px;margin-bottom:32px;">The Institution That Doesn't Exist Yet</h1>
+
+    <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:36px;max-width:740px;">
+
+      <p class="sans" style="font-size:13px;color:#1A1A1A;line-height:1.85;">India is the world's fifth-largest economy with one of Asia's premier financial centres at its heart. In the next twenty years, it will not merely participate in global finance — it will define it. And yet there is no institution in this country that the world points to and says: that is where India's best finance talent comes from. That gap is remarkable. Given what India has become. Given what India is going to become.</p>
+
+      <p class="sans" style="font-size:13px;color:#3A3020;line-height:1.85;">Every BFSI business leader has lived this quietly. Talented graduates, selected through every right process, from the best campuses — and yet most needed a year before they were genuinely useful. Not from lack of intelligence. They lacked the clarity of someone built for a direction — a specialist worthy and ready for the seat, not a generalist still finding their way. You wished their institutions had done more with the two years they had. The unease was real, even if it went unsaid.</p>
+
+      <p class="sans" style="font-size:13px;color:#3A3020;line-height:1.85;">Beneath that is a deeper problem. The mid-senior layer of any serious BFSI organisation — the people it actually depends on — is thin in the pipeline behind it. Great finance leaders have always been accidents of mentorship, fortune, and timing. Never the product of deliberate formation. And now artificial intelligence is compressing the timeline for everyone, changing what work means, what skills matter, who organisations will need to lead them through what is coming.</p>
+
+      <p class="sans" style="font-size:13px;color:#3A3020;line-height:1.85;">India's great management institutions were built to produce managers who could move across industries. BFSI was one industry among many for them. Today it is an entire world — with its own language, its own physics, its own professional culture. The curriculum built around theory and recall was never designed for the complexity of a financial market in 2025. No one failed. The world moved faster than institutions can.</p>
+
+      <p class="sans" style="font-size:13px;color:#7A5500;line-height:1.85;font-style:italic;border-left:2px solid #8B6914;padding-left:18px;">This is a design failure — and design failures are not fixed by incremental improvement. They require building something new.</p>
+
+    </div>
+
+    <!-- Historical comparisons -->
+    <div class="comparisons-grid">
+      <div style="background:#2A2418;padding:20px 22px;">
+        <div class="sans eyebrow" style="color:#C4A35A;margin-bottom:8px;">NYU Stern, US · 1900 · FT #23</div>
+        <div class="sans" style="font-size:12px;color:#A89878;line-height:1.7;">New York was becoming the financial capital of the world and needed a school that understood finance as its native language.</div>
+      </div>
+      <div style="background:#2A2418;padding:20px 22px;">
+        <div class="sans eyebrow" style="color:#C4A35A;margin-bottom:8px;">CEIBS, China · 1994 · FT #8</div>
+        <div class="sans" style="font-size:12px;color:#A89878;line-height:1.7;">Western MBAs were arriving in China and failing. The country needed management education built for its market complexity.</div>
+      </div>
+      <div style="background:#2A2418;padding:20px 22px;">
+        <div class="sans eyebrow" style="color:#C4A35A;margin-bottom:8px;">ISB, India · 2001 · FT #27</div>
+        <div class="sans" style="font-size:12px;color:#A89878;line-height:1.7;">India's finest future managers were going abroad to be trained and eventually lost. The country needed a world-class school.</div>
+      </div>
+    </div>
+
+    <!-- Conviction paragraph -->
+    <div style="border-left:2px solid #8B6914;padding-left:20px;margin-bottom:36px;max-width:740px;">
+      <p class="sans" style="font-size:13px;color:#3A3020;line-height:1.85;">Each of the above were born from the same conviction: something important needed to exist to solve a particular problem, no other institution was dedicated to solving it, and the moment to build it had arrived. The white space in India today is finance. The institution that combines domain depth, practitioner-led learning, and an AI-native architecture to produce the leaders the next era demands does not yet exist. It is being built in Mumbai, co-owned and co-designed with the industry it serves.</p>
+    </div>
+
+    <!-- 2045 line -->
+    <p class="sans" style="font-size:13px;color:#7A5500;line-height:1.85;font-style:italic;border-left:2px solid #8B6914;padding-left:18px;margin-bottom:36px;max-width:740px;">In 2045, the fingerprints of one institution will be quietly woven through the generation running India's most consequential financial institutions.</p>
+
+    <!-- Final declaration -->
+    <div style="background:#2A2418;padding:22px 26px;display:flex;align-items:center;justify-content:center;">
+      <div class="sans" style="font-size:16px;font-weight:700;color:#C4A35A;line-height:1.45;text-align:center;">That institution is being built today.</div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION 2: INSTITUTION INTRO                           -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <!-- HEADER -->
+  <div class="header-wrap">
+    <div class="sans eyebrow" style="color:#8B6914;margin-bottom:14px;">Mumbai · Lower Parel · First Batch 2027</div>
+    <h1 style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;color:#1A1A1A;line-height:1.1;letter-spacing:-0.5px;margin-bottom:8px;">PROJECT — FIRST RIPPLE</h1>
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#8B7850;font-style:italic;">India's leading finance institution — under construction</div>
+  </div>
+
+  <!-- KEY METRICS ROW -->
+  <div class="metrics-grid">
+    <div class="metric-cell">
+      <div class="metric-num" style="font-size:38px;font-weight:700;color:#1A1A1A;line-height:1;">20</div>
+      <div class="sans eyebrow" style="color:#8B6914;margin:5px 0 3px;">Months</div>
+      <div class="sans" style="font-size:10px;color:#5C5040;">Full-time · Fully offline</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num" style="font-size:38px;font-weight:700;color:#1A1A1A;line-height:1;">60</div>
+      <div class="sans eyebrow" style="color:#8B6914;margin:5px 0 3px;">Students</div>
+      <div class="sans" style="font-size:10px;color:#5C5040;">First batch · 2027</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num" style="font-size:38px;font-weight:700;color:#1A1A1A;line-height:1;">3,200</div>
+      <div class="sans eyebrow" style="color:#8B6914;margin:5px 0 3px;">Programme Hours</div>
+      <div class="sans" style="font-size:10px;color:#5C5040;">Classroom · Assignments · On-job</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num" style="font-size:38px;font-weight:700;color:#1A1A1A;line-height:1;">50%</div>
+      <div class="sans eyebrow" style="color:#8B6914;margin:5px 0 3px;">On Scholarship</div>
+      <div class="sans" style="font-size:10px;color:#5C5040;">Merit opens every door</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body-wrap">
+
+    <!-- WHAT MAKES IT DIFFERENT -->
+    <div class="section-block">
+      <div class="section-rule"><div class="section-rule-label">What makes it different</div><div class="section-rule-line"></div></div>
+      <div class="grid-3" style="gap:10px;">
+        <div style="background:#EDE5D4;padding:18px 16px;border-top:3px solid #8B6914;">
+          <div style="font-size:14px;font-weight:700;color:#1A1A1A;margin-bottom:7px;line-height:1.2;">Built Backwards</div>
+          <div class="sans" style="font-size:10px;color:#5C5040;line-height:1.5;">Every module, every faculty, every project — leads back to what industry actually needs and asked for.</div>
+        </div>
+        <div style="background:#EDE5D4;padding:18px 16px;border-top:3px solid #8B6914;">
+          <div style="font-size:14px;font-weight:700;color:#1A1A1A;margin-bottom:7px;line-height:1.2;">Institution of Doers &amp; Thinkers</div>
+          <div class="sans" style="font-size:10px;color:#5C5040;line-height:1.5;">Not observers. Not learners-in-progress. Graduates who arrive ready to own the work from Day One.</div>
+        </div>
+        <div style="background:#EDE5D4;padding:18px 16px;border-top:3px solid #8B6914;">
+          <div style="font-size:14px;font-weight:700;color:#1A1A1A;margin-bottom:7px;line-height:1.2;">One Track. Total Mastery.</div>
+          <div class="sans" style="font-size:10px;color:#5C5040;line-height:1.5;">7 Terms. First 3 terms foundation. Next 4 terms — five tracks to choose, the chosen track pursued to full mastery.</div>
+        </div>
+        <div style="background:#EDE5D4;padding:18px 16px;border-top:3px solid #8B6914;">
+          <div style="font-size:14px;font-weight:700;color:#1A1A1A;margin-bottom:7px;line-height:1.2;">AI Native. Not AI Added.</div>
+          <div class="sans" style="font-size:10px;color:#5C5040;line-height:1.5;">300 AI hours embedded from Term One — not a module, a way of working.</div>
+        </div>
+        <div style="background:#EDE5D4;padding:18px 16px;border-top:3px solid #8B6914;">
+          <div style="font-size:14px;font-weight:700;color:#1A1A1A;margin-bottom:7px;line-height:1.2;">Only for the Top 1%</div>
+          <div class="sans" style="font-size:10px;color:#5C5040;line-height:1.5;">90+ percentile. Finance experience mandatory. Selected for thinking, ownership, and the hunger to be exceptional.</div>
+        </div>
+        <div style="background:#EDE5D4;padding:18px 16px;border-top:3px solid #8B6914;">
+          <div style="font-size:14px;font-weight:700;color:#1A1A1A;margin-bottom:7px;line-height:1.2;">Foundations That Build Leaders</div>
+          <div class="sans" style="font-size:10px;color:#5C5040;line-height:1.5;">Ownership, judgment, and first-principles thinking — built in from Day One, not taught as an afterthought.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIVE TRACKS -->
+    <div class="section-block">
+      <div class="section-rule"><div class="section-rule-label">Five Specialisation Tracks</div><div class="section-rule-line"></div></div>
+      <div class="grid-5">
+        <div style="background:#1A1A1A;padding:16px 10px;text-align:center;">
+          <div style="font-size:12px;font-weight:700;color:#C4A35A;line-height:1.35;margin-bottom:6px;">Wealth &amp;<br>Investments</div>
+          <div class="sans eyebrow" style="font-size:8px;color:#7A6840;letter-spacing:1.5px;">Track 1</div>
+        </div>
+        <div style="background:#1A1A1A;padding:16px 10px;text-align:center;">
+          <div style="font-size:12px;font-weight:700;color:#C4A35A;line-height:1.35;margin-bottom:6px;">Capital<br>Markets</div>
+          <div class="sans eyebrow" style="font-size:8px;color:#7A6840;letter-spacing:1.5px;">Track 2</div>
+        </div>
+        <div style="background:#1A1A1A;padding:16px 10px;text-align:center;">
+          <div style="font-size:12px;font-weight:700;color:#C4A35A;line-height:1.35;margin-bottom:6px;">Credit &amp;<br>Risk</div>
+          <div class="sans eyebrow" style="font-size:8px;color:#7A6840;letter-spacing:1.5px;">Track 3</div>
+        </div>
+        <div style="background:#3A3020;padding:16px 10px;text-align:center;opacity:0.75;">
+          <div style="font-size:12px;font-weight:700;color:#C4A35A;line-height:1.35;margin-bottom:6px;">Digital &amp;<br>Fintech</div>
+          <div class="sans eyebrow" style="font-size:8px;color:#7A6840;letter-spacing:1.5px;">Track 4 · 2028</div>
+        </div>
+        <div style="background:#3A3020;padding:16px 10px;text-align:center;opacity:0.75;">
+          <div style="font-size:12px;font-weight:700;color:#C4A35A;line-height:1.35;margin-bottom:6px;">Corporate<br>Finance</div>
+          <div class="sans eyebrow" style="font-size:8px;color:#7A6840;letter-spacing:1.5px;">Track 5 · 2028</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEARNING ARCHITECTURE -->
+    <div class="section-block">
+      <div class="section-rule"><div class="section-rule-label">The Learning Architecture · 3,200 Hours</div><div class="section-rule-line"></div></div>
+      <div class="grid-la">
+        <div style="background:#F5F0E8;padding:18px 16px;">
+          <div style="font-size:30px;font-weight:700;color:#8B6914;line-height:1;">800</div>
+          <div class="sans eyebrow" style="color:#1A1A1A;margin:6px 0 5px;">Classroom Hours</div>
+          <div class="sans" style="font-size:10px;color:#5C5040;line-height:1.5;">Practitioner-led sessions across six terms with resident and visiting faculty.</div>
+        </div>
+        <div style="background:#F5F0E8;padding:18px 16px;">
+          <div style="font-size:30px;font-weight:700;color:#8B6914;line-height:1;">800</div>
+          <div class="sans eyebrow" style="color:#1A1A1A;margin:6px 0 5px;">Assignment Hours</div>
+          <div class="sans" style="font-size:10px;color:#5C5040;line-height:1.5;">Simulations, case studies, AI applications — demonstrated proof of learning.</div>
+        </div>
+        <div style="background:#1A1A1A;padding:18px 16px;">
+          <div style="font-size:30px;font-weight:700;color:#C4A35A;line-height:1;">1,600</div>
+          <div class="sans eyebrow" style="color:#9A8860;margin:6px 0 12px;">On-the-Job Hours</div>
+          <div class="grid-ojt">
+            <div style="border-left:2px solid #8B6914;padding-left:10px;">
+              <div style="font-size:16px;font-weight:700;color:#C4A35A;line-height:1;">500</div>
+              <div class="sans" style="font-size:9px;color:#8B7850;line-height:1.4;margin-top:4px;">Co-Op<br>Apprenticeship</div>
+            </div>
+            <div style="border-left:2px solid #8B6914;padding-left:10px;">
+              <div style="font-size:16px;font-weight:700;color:#C4A35A;line-height:1;">800</div>
+              <div class="sans" style="font-size:9px;color:#8B7850;line-height:1.4;margin-top:4px;">4-Month<br>Internship</div>
+            </div>
+            <div style="border-left:2px solid #8B6914;padding-left:10px;">
+              <div style="font-size:16px;font-weight:700;color:#C4A35A;line-height:1;">300</div>
+              <div class="sans" style="font-size:9px;color:#8B7850;line-height:1.4;margin-top:4px;">Live<br>Projects</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW WE TEACH -->
+    <div class="section-block">
+      <div class="section-rule" style="margin-bottom:6px;"><div class="section-rule-label">How We Teach</div><div class="section-rule-line"></div></div>
+      <div class="sans" style="font-size:10px;color:#8B6914;font-style:italic;margin-bottom:14px;">Each layer builds on the one before it. Skip one and the next doesn't hold.</div>
+      <div class="grid-how">
+        <div class="how-connector"></div>
+        <div style="background:#F5F0E8;padding:20px 16px;border-top:3px solid #C4A35A;margin-right:1px;position:relative;z-index:1;">
+          <div style="width:24px;height:24px;border-radius:50%;background:#F5F0E8;border:2px solid #8B6914;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+            <span class="sans" style="font-size:9px;font-weight:700;color:#8B6914;">01</span>
+          </div>
+          <div class="sans eyebrow" style="color:#8B6914;margin-bottom:8px;">Academic Focus</div>
+          <div style="font-size:13px;font-weight:700;color:#1A1A1A;line-height:1.3;margin-bottom:8px;">Build the Foundation</div>
+          <div class="sans" style="font-size:10px;color:#5C5040;line-height:1.6;">Concepts taught with unimpeachable rigour. The kind that holds up under pressure and doesn't need to be relearned on the job.</div>
+        </div>
+        <div style="background:#EDE5D4;padding:20px 16px;border-top:3px solid #A08030;margin-right:1px;position:relative;z-index:1;">
+          <div style="width:24px;height:24px;border-radius:50%;background:#EDE5D4;border:2px solid #8B6914;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+            <span class="sans" style="font-size:9px;font-weight:700;color:#8B6914;">02</span>
+          </div>
+          <div class="sans eyebrow" style="color:#8B6914;margin-bottom:8px;">Practitioner Integration</div>
+          <div style="font-size:13px;font-weight:700;color:#1A1A1A;line-height:1.3;margin-bottom:8px;">See How It's Practised</div>
+          <div class="sans" style="font-size:10px;color:#5C5040;line-height:1.6;">Practitioners who live these decisions every day show how theory becomes action — in real deals, real portfolios, real risk calls.</div>
+        </div>
+        <div style="background:#2A2010;padding:20px 16px;border-top:3px solid #8B6914;margin-right:1px;position:relative;z-index:1;">
+          <div style="width:24px;height:24px;border-radius:50%;background:#2A2010;border:2px solid #C4A35A;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+            <span class="sans" style="font-size:9px;font-weight:700;color:#C4A35A;">03</span>
+          </div>
+          <div class="sans eyebrow" style="color:#C4A35A;margin-bottom:8px;">Learning by Doing</div>
+          <div style="font-size:13px;font-weight:700;color:#FFFFFF;line-height:1.3;margin-bottom:8px;">Now Do It Yourself</div>
+          <div class="sans" style="font-size:10px;color:#8B7850;line-height:1.6;">Saw how practitioners do it. Now do it yourself — simulations, live projects, co-ops, and a 4-month internship build real muscle memory.</div>
+        </div>
+        <div style="background:#1A1A1A;padding:20px 16px;border-top:3px solid #C4A35A;position:relative;z-index:1;">
+          <div style="width:24px;height:24px;border-radius:50%;background:#1A1A1A;border:2px solid #C4A35A;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+            <span class="sans" style="font-size:9px;font-weight:700;color:#C4A35A;">04</span>
+          </div>
+          <div class="sans eyebrow" style="color:#C4A35A;margin-bottom:8px;">AI Lab · 300 Hours</div>
+          <div style="font-size:13px;font-weight:700;color:#FFFFFF;line-height:1.3;margin-bottom:8px;">Do It Better. Faster.</div>
+          <div class="sans" style="font-size:10px;color:#8B7850;line-height:1.6;">You know how to do the work. Now explore how AI helps you do it better and faster. Not a shortcut — an amplifier for someone who already knows.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VENTURE LAB -->
+    <div class="section-block">
+      <div class="section-rule">
+        <div class="section-rule-label">Venture Lab</div>
+        <div class="section-rule-line"></div>
+        <div class="sans" style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5C5040;white-space:nowrap;">Launching 2028</div>
+      </div>
+      <div style="background:#1A1A1A;padding:20px 22px;">
+        <div class="grid-venture">
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#FFFFFF;line-height:1.35;margin-bottom:8px;">Build a real venture inside a world-class finance institution.</div>
+            <div class="sans" style="font-size:10px;color:#8B7850;line-height:1.65;">Form a founding team. Identify a real problem. Raise capital. Build. Generate revenue. Leave as a founder — or return to practice having run something real.</div>
+          </div>
+          <div style="display:grid;gap:8px;">
+            <div style="border-left:2px solid #8B6914;padding-left:12px;">
+              <div class="sans" style="font-size:9px;color:#C4A35A;font-weight:700;margin-bottom:2px;">You build something real</div>
+              <div class="sans" style="font-size:9px;color:#7A6840;line-height:1.4;">Traction, a co-founder, capital. You leave as a founder.</div>
+            </div>
+            <div style="border-left:2px solid #8B6914;padding-left:12px;">
+              <div class="sans" style="font-size:9px;color:#C4A35A;font-weight:700;margin-bottom:2px;">You return to practice</div>
+              <div class="sans" style="font-size:9px;color:#7A6840;line-height:1.4;">Having run P&amp;L and made decisions with real consequences.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACADEMIC LEADERSHIP -->
+    <div class="section-block">
+      <div class="section-rule"><div class="section-rule-label">Academic Leadership</div><div class="section-rule-line"></div></div>
+      <div class="grid-4" style="gap:1px;background:#C4A35A;">
+        <div style="background:#F5F0E8;padding:18px 16px;">
+          <div class="sans eyebrow" style="color:#8B6914;margin-bottom:8px;">Provost</div>
+          <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">A renowned Director or Dean of a top-5 Indian B-institution</div>
+          <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.5;">Owns the academic soul of the institution — learning outcomes, assessment rigour, and the standard of every term delivered.</div>
+        </div>
+        <div style="background:#F5F0E8;padding:18px 16px;">
+          <div class="sans eyebrow" style="color:#8B6914;margin-bottom:8px;">Finance Area Leader</div>
+          <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">A globally renowned finance chair professor</div>
+          <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.5;">Bridges the world's best academic frameworks with the demands of Indian financial markets. Ensures the curriculum is technically unimpeachable.</div>
+        </div>
+        <div style="background:#F5F0E8;padding:18px 16px;">
+          <div class="sans eyebrow" style="color:#8B6914;margin-bottom:8px;">Academic Council</div>
+          <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">5 coveted Indian and global academic leaders</div>
+          <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.5;">IIM A/B/C · ISB · leading global schools. Review curriculum annually. Rigour, depth, and integrity are non-negotiable.</div>
+        </div>
+        <div style="background:#EDE5D4;padding:18px 16px;border-left:3px solid #8B6914;">
+          <div class="sans eyebrow" style="color:#8B6914;margin-bottom:8px;">Learning Designer</div>
+          <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">Dedicated learning architects embedded in the institution</div>
+          <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.5;">Work with practitioners to convert deep domain knowledge into reliable curriculum. The function that makes great practitioners into great teachers.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FACULTY + GOVERNANCE -->
+    <div class="grid-2col-section">
+
+      <div>
+        <div class="section-rule"><div class="section-rule-label">Faculty Ecosystem</div><div class="section-rule-line"></div></div>
+        <div class="grid-faculty-tiles">
+          <div style="background:#EDE5D4;padding:14px;">
+            <div style="font-size:22px;font-weight:700;color:#8B6914;line-height:1;">4</div>
+            <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin:5px 0 3px;">Resident Faculty</div>
+            <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.4;">ISB · Top 6 IIMs · BFSI Directors &amp; VPs</div>
+          </div>
+          <div style="background:#EDE5D4;padding:14px;">
+            <div style="font-size:22px;font-weight:700;color:#8B6914;line-height:1;">12+</div>
+            <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin:5px 0 3px;">Visiting Academic</div>
+            <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.4;">Harvard · NYU Stern · INSEAD · IIM A/B/C</div>
+          </div>
+          <div style="background:#EDE5D4;padding:14px;">
+            <div style="font-size:22px;font-weight:700;color:#8B6914;line-height:1;">30+</div>
+            <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin:5px 0 3px;">Visiting Industry Faculty</div>
+            <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.4;">CXOs, Directors and VPs</div>
+          </div>
+          <div style="background:#EDE5D4;padding:14px;">
+            <div style="font-size:22px;font-weight:700;color:#8B6914;line-height:1;">10+</div>
+            <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin:5px 0 3px;">Masterclass</div>
+            <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.4;">Industry legends and leading CEOs</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-rule"><div class="section-rule-label">Governance Structure</div><div class="section-rule-line"></div></div>
+        <div style="display:grid;gap:6px;">
+          <div style="background:#EDE5D4;padding:12px 14px;display:flex;gap:14px;align-items:center;">
+            <div style="font-size:18px;font-weight:700;color:#8B6914;min-width:28px;line-height:1;">5</div>
+            <div>
+              <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:2px;">Governing Council</div>
+              <div class="sans" style="font-size:9px;color:#5C5040;">BFSI promoters — building for centuries, not decades</div>
+            </div>
+          </div>
+          <div style="background:#1A1A1A;padding:14px;display:flex;gap:14px;align-items:flex-start;border-left:4px solid #C4A35A;">
+            <div style="font-size:18px;font-weight:700;color:#C4A35A;min-width:28px;line-height:1;">5</div>
+            <div>
+              <div class="sans" style="font-size:10px;font-weight:700;color:#FFFFFF;margin-bottom:4px;">Industry Senates · Curriculum Co-Designed</div>
+              <div class="sans" style="font-size:9px;color:#8B7850;line-height:1.5;">One per track. Three CEOs each. They do not advise the curriculum — they author it. Every module is stress-tested against what a hiring firm actually needs on Day One.</div>
+            </div>
+          </div>
+          <div style="background:#EDE5D4;padding:12px 14px;display:flex;gap:14px;align-items:center;">
+            <div style="font-size:18px;font-weight:700;color:#8B6914;min-width:28px;line-height:1;">1</div>
+            <div>
+              <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:2px;">Talent Senate</div>
+              <div class="sans" style="font-size:9px;color:#5C5040;">5 leading CHROs + talent leaders from BFSI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THOUGHT LEADERSHIP -->
+    <div class="section-block">
+      <div class="section-rule"><div class="section-rule-label">Thought Leadership</div><div class="section-rule-line"></div></div>
+      <div class="grid-4" style="gap:1px;background:#C4A35A;">
+        <div style="background:#F5F0E8;padding:18px 16px;">
+          <div class="sans eyebrow" style="color:#8B6914;margin-bottom:8px;">Partnerships</div>
+          <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">With Globally Ranked Institutions</div>
+          <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.5;">Academic alliances with world-ranked finance and business institutions — bringing global frameworks into Indian financial markets.</div>
+        </div>
+        <div style="background:#F5F0E8;padding:18px 16px;">
+          <div class="sans eyebrow" style="color:#8B6914;margin-bottom:8px;">Case Study Development</div>
+          <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">India-Built. Classroom-Ready.</div>
+          <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.5;">Original case studies built from Indian BFSI markets — filling the gap that has long forced Indian institutions to rely on Western case material.</div>
+        </div>
+        <div style="background:#F5F0E8;padding:18px 16px;">
+          <div class="sans eyebrow" style="color:#8B6914;margin-bottom:8px;">Industry-Led Research</div>
+          <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">Practitioner Questions. Rigorous Answers.</div>
+          <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.5;">Research agenda set jointly with industry — producing work that is both academically sound and immediately useful to the people who operate these markets.</div>
+        </div>
+        <div style="background:#EDE5D4;padding:18px 16px;border-left:3px solid #8B6914;">
+          <div class="sans eyebrow" style="color:#8B6914;margin-bottom:8px;">National BFSI Conference</div>
+          <div class="sans" style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">India's Premier Finance Gathering</div>
+          <div class="sans" style="font-size:9px;color:#5C5040;line-height:1.5;">An annual convening of India's most consequential finance leaders — setting the agenda for the profession and positioning the institution at its centre.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTCOMES ROW -->
+    <div class="outcomes-grid">
+      <div class="outcome-cell">
+        <div class="sans eyebrow" style="color:#8B6914;margin-bottom:6px;">Who gets in</div>
+        <div style="font-size:15px;font-weight:700;color:#1A1A1A;line-height:1.2;">Top 1% Finance Talent</div>
+        <div class="sans" style="font-size:10px;color:#5C5040;margin-top:5px;">90+ percentile · 2–4 yrs experience<br>CA / CFA / FRM equivalent accepted</div>
+      </div>
+      <div class="outcome-cell bordered">
+        <div class="sans eyebrow" style="color:#8B6914;margin-bottom:6px;">Access</div>
+        <div style="font-size:15px;font-weight:700;color:#1A1A1A;line-height:1.2;">Merit Opens Every Door</div>
+        <div class="sans" style="font-size:10px;color:#5C5040;margin-top:5px;">50% merit scholarships available<br>No deserving student turned away</div>
+      </div>
+      <div class="outcome-cell">
+        <div class="sans eyebrow" style="color:#8B6914;margin-bottom:6px;">Target Fixed Compensation</div>
+        <div style="font-size:15px;font-weight:700;color:#1A1A1A;line-height:1.2;">&#8377;20 lakhs</div>
+        <div class="sans" style="font-size:10px;color:#5C5040;margin-top:5px;">High-impact finance roles<br>Lifelong career partnership</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-wrap">
+    <div class="sans" style="font-size:11px;color:#8B7850;letter-spacing:0.3px;">Help build this institution</div>
+    <div class="sans eyebrow" style="font-size:10px;color:#5C5040;">Drop a line to</div>
+    <div class="sans" style="font-size:11px;color:#C4A35A;letter-spacing:0.5px;">s@thefirstripple.org</div>
+  </div>
+
+</div>
+</body>
+</html>
