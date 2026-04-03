@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First Ripple</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F5F2EC;
+      --ink: #1A1A1A;
+      --ink-light: #5A5650;
+      --gold: #8B6914;
+      --gold-light: #C4A45A;
+      --col: 680px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── FADE IN ON SCROLL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── SHARED ── */
+    .container {
+      max-width: var(--col);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── SECTION 1 — OPENING ── */
+    #opening {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 24px;
+      position: relative;
+    }
+
+    #opening::after {
+      content: '';
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .opening-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(52px, 9vw, 88px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: settleIn 1.2s ease forwards 0.3s;
+    }
+
+    .opening-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 28px;
+      opacity: 0;
+      animation: settleIn 1s ease forwards 0.9s;
+    }
+
+    .opening-tagline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(17px, 2.4vw, 22px);
+      color: var(--ink-light);
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+      max-width: 560px;
+      opacity: 0;
+      animation: settleIn 1s ease forwards 1.3s;
+    }
+
+    @keyframes settleIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION SPACING ── */
+    section {
+      padding: 120px 0;
+    }
+
+    /* ── SECTION 2 — THE PROBLEM ── */
+    #problem .body-text {
+      font-size: clamp(18px, 2.2vw, 21px);
+      font-weight: 400;
+      line-height: 1.85;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    #problem .body-text:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── SECTION 3 — THE INSTITUTION ── */
+    #institution .body-text {
+      font-size: clamp(18px, 2.2vw, 21px);
+      font-weight: 400;
+      line-height: 1.85;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .pull-quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(24px, 3.5vw, 34px);
+      line-height: 1.5;
+      color: var(--ink);
+      text-align: center;
+      padding: 56px 0;
+      border-top: 1px solid rgba(139, 105, 20, 0.2);
+      border-bottom: 1px solid rgba(139, 105, 20, 0.2);
+      margin: 56px 0;
+    }
+
+    /* ── SECTION 4 — THE PROJECT ── */
+    #project .body-text {
+      font-size: clamp(18px, 2.2vw, 21px);
+      font-weight: 400;
+      line-height: 1.85;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .founder-line {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(16px, 1.8vw, 18px);
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(139, 105, 20, 0.2);
+    }
+
+    /* ── SECTION 5 — THE PEOPLE ── */
+    #people .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .people-card {
+      border: 1px solid rgba(139, 105, 20, 0.25);
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.3s ease;
+    }
+
+    .people-card:hover {
+      border-color: var(--gold);
+    }
+
+    .people-card span {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+
+    .people-note {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--ink-light);
+      margin-top: 16px;
+    }
+
+    /* ── SECTION 6 — CONTACT ── */
+    #contact {
+      text-align: center;
+      padding: 140px 24px 160px;
+    }
+
+    #contact .contact-line {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(19px, 2.6vw, 26px);
+      line-height: 1.7;
+      color: var(--ink-light);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    #contact .contact-email {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    #contact .contact-email:hover {
+      border-bottom-color: var(--gold-light);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid rgba(26, 26, 26, 0.08);
+    }
+
+    footer p {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--ink-light);
+      text-transform: uppercase;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .divider {
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+      margin: 0 auto;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      section { padding: 80px 0; }
+
+      .people-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      #contact { padding: 100px 24px 120px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── SECTION 1: OPENING ── -->
+  <section id="opening">
+    <h1 class="opening-name">First Ripple</h1>
+    <div class="opening-rule"></div>
+    <p class="opening-tagline">A project to build the institution Indian finance has always needed.</p>
+  </section>
+
+  <div class="divider reveal"></div>
+
+  <!-- ── SECTION 2: THE PROBLEM ── -->
+  <section id="problem">
+    <div class="container">
+
+      <p class="body-text reveal">
+        Every year, India's finest business schools produce thousands of finance graduates. They arrive at their first desk fluent in theory, sharp in examination, and almost entirely unprepared for the work that will actually be asked of them.
+      </p>
+
+      <p class="body-text reveal">
+        The gap is not one of intelligence. It is one of design. Finance education in India was built to produce graduates who could pass — not practitioners who could lead. The curriculum has not kept pace with what markets demand, what technology has changed, or what employers quietly stopped expecting from campus hires.
+      </p>
+
+      <p class="body-text reveal">
+        Something was always going to have to change. The question was who would do it, and whether they would do it right.
+      </p>
+
+    </div>
+  </section>
+
+  <div class="divider reveal"></div>
+
+  <!-- ── SECTION 3: THE INSTITUTION ── -->
+  <section id="institution">
+    <div class="container">
+
+      <p class="body-text reveal">
+        Tier 1 Business School will be a finance institution built from the demand side backward. Not from a syllabus outward. Employers will co-own the curriculum. Every faculty member will have lived the work they teach. Every graduate will have made real decisions before they are asked to make them professionally.
+      </p>
+
+      <blockquote class="pull-quote reveal">
+        The first institution designed around what finance actually demands — not what academia has always assumed it does.
+      </blockquote>
+
+      <p class="body-text reveal">
+        It will not be another program. It will be a different kind of institution — one that takes seriously the question of what a Day 1-ready finance professional actually looks like, and builds everything in service of that answer.
+      </p>
+
+    </div>
+  </section>
+
+  <div class="divider reveal"></div>
+
+  <!-- ── SECTION 4: THE PROJECT ── -->
+  <section id="project">
+    <div class="container">
+
+      <p class="body-text reveal">
+        Before the institution has a campus, before its first student has enrolled, before the world knows its name — there is this. A project. A gathering of the people who will make it real. First Ripple is the quiet beginning of something that will move outward for decades.
+      </p>
+
+      <p class="body-text reveal">
+        A ripple does not announce itself. It does not ask permission. It begins at a single point — precise, deliberate — and travels. What we build here, in these early months, will determine the shape of everything that follows.
+      </p>
+
+      <p class="body-text reveal">
+        The institution is being built by Supreet Singh — who spent two decades inside Indian finance and BFSI, watching the gap between education and employment widen, and who decided that watching was no longer enough.
+      </p>
+
+      <p class="founder-line reveal">
+        This work is dedicated to Abhay Aima — who saw it first, and who was meant to build it alongside us.
+      </p>
+
+    </div>
+  </section>
+
+  <div class="divider reveal"></div>
+
+  <!-- ── SECTION 5: THE PEOPLE ── -->
+  <section id="people">
+    <div class="container">
+
+      <p class="section-label reveal">Those Already Inside</p>
+
+      <div class="people-grid reveal">
+        <div class="people-card"><span>Investor</span></div>
+        <div class="people-card"><span>Evangelist</span></div>
+        <div class="people-card"><span>Advisor</span></div>
+        <div class="people-card"><span>Faculty</span></div>
+        <div class="people-card"><span>Investor</span></div>
+        <div class="people-card"><span>Evangelist</span></div>
+      </div>
+
+      <p class="people-note reveal">More to be announced.</p>
+
+    </div>
+  </section>
+
+  <!-- ── SECTION 6: CONTACT ── -->
+  <section id="contact">
+    <p class="contact-line reveal">
+      This institution is being built with people who believe it matters.<br>
+      If that is you —
+    </p>
+    <a class="contact-email reveal" href="mailto:firstripple@tier1.in">firstripple@tier1.in</a>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>First Ripple &nbsp;·&nbsp; A Tier 1 Business School Project &nbsp;·&nbsp; Mumbai</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
